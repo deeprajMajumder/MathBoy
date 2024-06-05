@@ -89,74 +89,39 @@ class MainActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
-                OutlinedTextField(
+                CustomOutlinedTextField(
                     value = input1,
                     onValueChange = {
                         input1 = it
                         isButtonClicked = false
                     },
-                    label = { Text("Number List 1") },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
-                        imeAction = ImeAction.Done
-                    ),
-                    singleLine = false,
-                    placeholder = {
-                        Text("Add list of comma-separated numbers",
-                            color = Color.LightGray,
-                            fontSize = 12.sp
-                        )
-                      },
-                    maxLines = 10, // Adjust the maxLines as needed
-                    modifier = Modifier
-                        .fillMaxWidth() // Ensures the text field takes up the full width of the parent
+                    label = "Number List 1",
+                    placeholder = "Add list of comma-separated numbers",
+                    maxLines = 10
                 )
             }
             item {
-                OutlinedTextField(
+                CustomOutlinedTextField(
                     value = input2,
                     onValueChange = {
                         input2 = it
                         isButtonClicked = false
                     },
-                    label = { Text("Number List 2") },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
-                        imeAction = ImeAction.Done
-                    ),
-                    singleLine = false,
-                    placeholder = { Text("Add list of comma-separated numbers",
-                        color = Color.LightGray,
-                        fontSize = 12.sp
-                    )
-                      },
-                    maxLines = 10,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    label = "Number List 2",
+                    placeholder = "Add list of comma-separated numbers",
+                    maxLines = 10
                 )
             }
             item {
-                OutlinedTextField(
+                CustomOutlinedTextField(
                     value = input3,
                     onValueChange = {
                         input3 = it
                         isButtonClicked = false
                     },
-                    label = { Text("Number List 3") },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
-                        imeAction = ImeAction.Done
-                    ),
-                    singleLine = false,
-                    placeholder = {
-                        Text("Add list of comma-separated numbers",
-                            color = Color.LightGray,
-                            fontSize = 12.sp
-                        )
-                    },
-                    maxLines = 10,
-                    modifier = Modifier
-                        .fillMaxWidth()
+                    label = "Number List 3",
+                    placeholder = "Add list of comma-separated numbers",
+                    maxLines = 10
                 )
             }
 
@@ -170,10 +135,10 @@ class MainActivity : ComponentActivity() {
             }
             item {
                 if (isButtonClicked) {
-                    if (input1.isEmpty() && input2.isEmpty() && input3.isEmpty()) {
+                    if (listOf(input1, input2, input3).all { it.isEmpty() }) {
                         Text("Please enter at least one list")
                     } else {
-                        calculatedResult?.let {
+                        calculatedResult?.let { result ->
                             Card(
                                 modifier = Modifier.padding(16.dp),
                                 elevation = CardDefaults.cardElevation(8.dp)
@@ -186,7 +151,7 @@ class MainActivity : ComponentActivity() {
                                     fontFamily = FontFamily.Serif
                                 )
                                 Text(
-                                    text = it,
+                                    text = result,
                                     fontSize = 16.sp,
                                     modifier = Modifier.padding(16.dp)
                                 )
@@ -198,6 +163,35 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    fun CustomOutlinedTextField(
+        value: String,
+        onValueChange: (String) -> Unit,
+        label: String,
+        placeholder: String,
+        maxLines: Int
+    ) {
+        OutlinedTextField(
+            value = value,
+            onValueChange = {
+                onValueChange(it)
+            },
+            label = { Text(label) },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done
+            ),
+            singleLine = false,
+            placeholder = {
+                Text(placeholder,
+                    color = Color.LightGray,
+                    fontSize = 12.sp
+                )
+            },
+            maxLines = maxLines,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 
     @Preview(showBackground = true)
     @Composable
