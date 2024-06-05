@@ -35,9 +35,9 @@ class MainViewModel @Inject constructor(
 
     fun calculateResults(input1: String, input2: String, input3: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val list1 = input1.split(',').mapNotNull { it.trim().toIntOrNull() }
-            val list2 = input2.split(',').mapNotNull { it.trim().toIntOrNull() }
-            val list3 = input3.split(',').mapNotNull { it.trim().toIntOrNull() }
+            val list1 = input1.split(',').mapNotNull { it.trim().toFloatOrNull() }
+            val list2 = input2.split(',').mapNotNull { it.trim().toFloatOrNull() }
+            val list3 = input3.split(',').mapNotNull { it.trim().toFloatOrNull() }
 
             val intersect = list1.intersect(list2.toSet()).intersect(list3.toSet())
             val union = list1.union(list2).union(list3)
