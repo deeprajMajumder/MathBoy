@@ -91,7 +91,10 @@ class MainActivity : ComponentActivity() {
             item {
                 OutlinedTextField(
                     value = input1,
-                    onValueChange = { input1 = it },
+                    onValueChange = {
+                        input1 = it
+                        isButtonClicked = false
+                    },
                     label = { Text("Number List 1") },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number,
@@ -112,7 +115,10 @@ class MainActivity : ComponentActivity() {
             item {
                 OutlinedTextField(
                     value = input2,
-                    onValueChange = { input2 = it },
+                    onValueChange = {
+                        input2 = it
+                        isButtonClicked = false
+                    },
                     label = { Text("Number List 2") },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number,
@@ -132,7 +138,10 @@ class MainActivity : ComponentActivity() {
             item {
                 OutlinedTextField(
                     value = input3,
-                    onValueChange = { input3 = it },
+                    onValueChange = {
+                        input3 = it
+                        isButtonClicked = false
+                    },
                     label = { Text("Number List 3") },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Number,
