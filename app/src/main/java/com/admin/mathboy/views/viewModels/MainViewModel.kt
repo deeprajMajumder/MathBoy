@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun formatInput(input: String): String {
+    private fun formatInput(input: String): String {
         return input.replace(Regex("(\\d)(?=\\d)"), "$1,")
     }
 
